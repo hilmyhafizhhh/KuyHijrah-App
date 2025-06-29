@@ -129,10 +129,6 @@ class DashboardNewsController extends Controller
         return redirect('/dashboard/news')->with('success', 'News has been deleted!');
     }
 
-    public function getRouteKeyName(){
-        return 'slug';
-    }
-
     public function checkSlug(Request $request) {
         $slug = SlugService::createSlug(News::class, 'slug', $request->title);
 

@@ -1,84 +1,48 @@
 @extends('dashboard.layouts.main')
 
-{{-- Tambahan style untuk modal agar selaras dengan tema --}}
-<style>
-    .modal-header {
-        background-color: #f3f4f6;
-        border-bottom: 1px solid #e5e7eb;
-    }
-
-    .modal-title {
-        color: #374151;
-        font-weight: 600;
-    }
-
-    .modal-body {
-        color: #4b5563;
-    }
-
-    .modal-footer .btn-danger {
-        background-color: #dc3545;
-        border-color: #dc3545;
-    }
-
-    .modal-footer .btn-danger:hover {
-        background-color: #bb2d3b;
-    }
-
-    .modal-footer .btn-secondary {
-        background-color: #e5e7eb;
-        color: #374151;
-        border: none;
-    }
-
-    .modal-footer .btn-secondary:hover {
-        background-color: #d1d5db;
-    }
-</style>
-
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">All News</h1>
+        <h1 class="h2">News Categories</h1>
     </div>
 
-    @if (session()->has('success'))
+     @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show col-lg-8" role="alert">
             {{ session('success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
-    <div class="table-responsive col-lg-8">
-        <a href="/dashboard/news/create" class="btn btn-primary mb-3">Create new news</a>
+    <div class="table-responsive col-lg-6">
+        <a href="/dashboard/categories/create" class="btn btn-primary mb-3">Create new category</a>
 
-        @if ($news->isNotEmpty())
-            <table class="table table-striped table-sm align-middle">
+        @if ($categories->isNotEmpty())
+            <table class="table table-striped table-sm">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Category</th>
+                        <th scope="col">Category Name</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($news as $article)
+                    @foreach ($categories as $category)
                         <tr>
-                            <td>{{ $news->firstItem() + $loop->index }}</td>
-                            <td>{{ $article->title }}</td>
-                            <td>{{ $article->category->name }}</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $category->name }}</td>
                             <td>
-                                <a href="/dashboard/news/{{ $article->slug }}" class="badge bg-info">
+                                <a href="/dashboard/categories/{{ $category->slug }}" class="badge bg-info">
                                     <span data-feather="eye"></span>
                                 </a>
-                                <a href="/dashboard/news/{{ $article->slug }}/edit" class="badge bg-warning">
+                                <a href="/dashboard/categories/{{ $category->slug }}/edit" class="badge bg-warning">
                                     <span data-feather="edit"></span>
                                 </a>
+
+                                <!-- Tombol Trigger Modal -->
                                 <button type="button"
                                     class="badge bg-danger border-0"
                                     data-bs-toggle="modal"
                                     data-bs-target="#confirmDeleteModal"
-                                    data-action="/dashboard/news/{{ $article->slug }}">
+                                    data-action="/dashboard/categories/{{ $category->slug }}">
                                     <span data-feather="x-circle"></span>
                                 </button>
                             </td>
@@ -87,13 +51,8 @@
                 </tbody>
             </table>
         @else
-            <h2>No news available!</h2>
+            <h2>No categories available!</h2>
         @endif
-
-        {{-- Pagination --}}
-        <div class="d-flex justify-content-end mt-4">
-            {{ $news->links() }}
-        </div>
     </div>
 
     <!-- Modal Konfirmasi Delete -->
@@ -104,11 +63,11 @@
                 @method('DELETE')
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="confirmDeleteModalLabel">Delete News</h5>
+                        <h5 class="modal-title" id="confirmDeleteModalLabel">Delete Category</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        This action cannot be undone. Are you sure you want to delete this news?
+                        Are you sure you want to delete this category?
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -119,7 +78,7 @@
         </div>
     </div>
 
-    {{-- Script untuk mengatur form delete --}}
+    {{-- Script --}}
     <script>
         const deleteModal = document.getElementById('confirmDeleteModal');
         deleteModal.addEventListener('show.bs.modal', function (event) {
@@ -127,11 +86,6 @@
             const action = button.getAttribute('data-action');
             const form = document.getElementById('deleteForm');
             form.setAttribute('action', action);
-        });
-
-        // Inisialisasi feather icon setelah render
-        document.addEventListener('DOMContentLoaded', function () {
-            feather.replace();
         });
     </script>
 @endsection

@@ -69,6 +69,18 @@ class DatabaseSeeder extends Seeder
             "password"=> bcrypt("tamankota"),
         ]);
 
+        Admin::create([
+            "name" => 'Arya Suprobo',
+            "email" => 'aryasuprobo2766@gmail.com',
+            "password"=> bcrypt("admin123"),
+        ]);
+
+        Admin::create([
+            "name" => 'Adam Nur Zidane',
+            "email" => 'adamnurzidane025@gmail.com',
+            "password"=> bcrypt("admin123"),
+        ]);
+
         News::factory(20)->create();
 
         

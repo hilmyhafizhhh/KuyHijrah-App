@@ -1,23 +1,21 @@
 @extends('dashboard.layouts.main')
 
-{{-- Optional: Style konten --}}
+{{-- Optional Custom Style --}}
 <style>
-    .news-content {
+    .category-content {
         font-size: 1.05rem;
-        color: #374151; /* gray-700 */
-        line-height: 1.7;
+        color: #4b5563;
+        line-height: 1.6;
     }
 
-    .news-content h1, .news-content h2, .news-content h3 {
-        margin-top: 1.5rem;
-        margin-bottom: 1rem;
-        font-weight: 600;
-    }
-
-    .news-content img {
+    .category-content img {
         max-width: 100%;
         height: auto;
         margin: 1rem 0;
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        padding: 4px;
+        background-color: #f9fafb;
     }
 
     .btn + .btn {
@@ -28,44 +26,37 @@
 @section('container')
 <div class="col-lg-6">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">{{ $news->title }}</h1>
+        <h1 class="h2">{{ $category->name }}</h1>
     </div>
 
     {{-- Action Buttons --}}
     <div class="mb-3">
-        <a href="/dashboard/news" class="btn btn-sm btn-success">
+        <a href="/dashboard/categories" class="btn btn-sm btn-success">
             <span data-feather="arrow-left"></span> Back
         </a>
-        <a href="/dashboard/news/{{ $news->slug }}/edit" class="btn btn-sm btn-warning">
+        <a href="/dashboard/categories/{{ $category->slug }}/edit" class="btn btn-sm btn-warning">
             <span data-feather="edit"></span> Edit
         </a>
         <button type="button"
                 class="btn btn-sm btn-danger"
                 data-bs-toggle="modal"
                 data-bs-target="#confirmDeleteModal"
-                data-action="/dashboard/news/{{ $news->slug }}">
+                data-action="/dashboard/categories/{{ $category->slug }}">
             <span data-feather="x-circle"></span> Delete
         </button>
     </div>
 
-    {{-- Image --}}
-    @if ($news->image)
-        <div class="my-3" style="max-height: 350px; overflow: hidden;">
-            <img src="{{ asset('storage/' . $news->image) }}" class="img-fluid rounded" alt="{{ $news->title }}">
-        </div>
-    @else
-        <div class="my-3">
-            <img src="https://picsum.photos/800/400?random={{ $news->title }}" class="img-fluid rounded" alt="No image">
-        </div>
-    @endif
-
-    {{-- News Body --}}
-    <article class="news-content my-4">
-        {!! $news->body !!}
-    </article>
+    {{-- Category Image --}}
+    <div class="category-content">
+        @if ($category->image)
+            <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}">
+        @else
+            <img src="https://picsum.photos/800/300?{{ $category->name }}" alt="Placeholder">
+        @endif
+    </div>
 </div>
 
-{{-- Modal Konfirmasi Delete --}}
+{{-- Modal Confirm Delete --}}
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <form method="POST" id="deleteForm">
@@ -77,7 +68,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to delete this news?
+                    Are you sure you want to delete this category?
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-danger">Yes, Delete</button>
@@ -88,7 +79,7 @@
     </div>
 </div>
 
-{{-- Script untuk set form action --}}
+{{-- Script: Modal delete dynamic action --}}
 <script>
     const deleteModal = document.getElementById('confirmDeleteModal');
     deleteModal.addEventListener('show.bs.modal', function (event) {

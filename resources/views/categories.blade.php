@@ -59,14 +59,25 @@
                     <div class="category-card col-md-4">
                         <a href="/news?category={{ $category->slug }}" class="text-decoration-none text-white">
                             <div class="card shadow-sm">
-                                <div class="position-relative">
-                                    <img src="https://picsum.photos/500/500?{{ $category->name }}" class="card-img"
-                                        alt="{{ $category->name }}">
-                                    <div
-                                        class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center card-title-overlay">
-                                        <h5 class="text-white text-center m-0">{{ $category->name }}</h5>
+                                @if ($category->image)    
+                                    <div class="position-relative">
+                                        <img src="{{ asset('storage/' . $category->image) }}" class="card-img"
+                                            alt="{{ $category->name }}">
+                                        <div
+                                            class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center card-title-overlay">
+                                            <h5 class="text-white text-center m-0">{{ $category->name }}</h5>
+                                        </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="position-relative">
+                                        <img src="https://picsum.photos/500/500?{{ $category->name }}" class="card-img"
+                                            alt="{{ $category->name }}">
+                                        <div
+                                            class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center card-title-overlay">
+                                            <h5 class="text-white text-center m-0">{{ $category->name }}</h5>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </a>
                     </div>

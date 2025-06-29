@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AlQuranController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardNewsController;
 use App\Http\Controllers\HomeController;
@@ -29,6 +30,7 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth:admin');
 
 Route::get('/dashboard/news/checkSlug', [DashboardNewsController::class, 'checkSlug'])->middleware('auth:admin');
-
 Route::resource('/dashboard/news', DashboardNewsController::class)->middleware('auth:admin');
 
+Route::get('/dashboard/categories/checkSlug', [DashboardCategoryController::class, 'checkSlug'])->middleware('auth:admin');
+Route::resource('/dashboard/categories', DashboardCategoryController::class)->middleware('auth:admin');
