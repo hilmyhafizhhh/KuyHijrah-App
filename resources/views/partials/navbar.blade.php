@@ -71,6 +71,9 @@
           <a class="nav-link {{ Request::is('quran') ? 'active' : '' }}" href="/quran">Al‑Qur’an</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link {{ Request::is('jadwal-sholat') ? 'active' : '' }}" href="/jadwal-sholat">Jadwal Sholat</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link {{ Request::is('news') ? 'active' : '' }}" href="/news">News</a>
         </li>
         <li class="nav-item">

@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardNewsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JadwalSholatController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +35,5 @@ Route::resource('/dashboard/news', DashboardNewsController::class)->middleware('
 
 Route::get('/dashboard/categories/checkSlug', [DashboardCategoryController::class, 'checkSlug'])->middleware('auth:admin');
 Route::resource('/dashboard/categories', DashboardCategoryController::class)->middleware('auth:admin');
+
+Route::get('/jadwal-sholat', [JadwalSholatController::class, 'index'])->name('jadwal');

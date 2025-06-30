@@ -99,7 +99,7 @@
       <a href="quran" class="btn btn-green px-4 py-2 fs-5 shadow rounded-pill">
         📖 Baca Al-Qur'an
       </a>
-      <a href="#jadwal-sholat" class="btn btn-outline-green px-4 py-2 fs-5 shadow rounded-pill">
+      <a href="jadwal-sholat" class="btn btn-outline-green px-4 py-2 fs-5 shadow rounded-pill">
         🕌 Jadwal Sholat
       </a>
     </div>

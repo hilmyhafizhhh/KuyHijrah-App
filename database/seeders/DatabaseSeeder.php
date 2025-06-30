@@ -29,13 +29,18 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Category::create([
-            "name"=> "Lifestyle",
-            "slug"=> "lifestyle",
+            "name"=> "Dunia Islam",
+            "slug"=> "dunia-islam",
         ]);
 
         Category::create([
-            "name"=> "Dunia Islam",
-            "slug"=> "dunia-islam",
+            "name"=> "Lifestyle Islami",
+            "slug"=> "lifestyle-islami",
+        ]);
+
+        Category::create([
+            "name"=> "Wawasan / Umum",
+            "slug"=> "Wawasan-Umum",
         ]);
 
         User::create([
