@@ -15,11 +15,28 @@ class DashboardCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = Category::query();
+
+        if ($request->has('search')) {
+            $query->where('name', 'ILIKE', '%' . $request->search . '%');
+        }
+
+        if ($request->sort === 'az') {
+            $query->orderBy('name');
+        } elseif ($request->sort === 'za') {
+            $query->orderByDesc('name');
+        } elseif ($request->sort === 'latest') {
+            $query->orderByDesc('created_at');
+        } elseif ($request->sort === 'oldest') {
+            $query->orderBy('created_at');
+        }
+
+        $categories = $query->get();
+
         return view('dashboard.categories.index', [
-            'title' => 'Categories',
-            'categories' => Category::all()
+            'categories' => $categories
         ]);
     }
 

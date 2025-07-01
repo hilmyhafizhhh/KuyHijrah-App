@@ -15,10 +15,34 @@ class DashboardNewsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = News::with('category');
+
+        if ($request->search) {
+            $query->where('title', 'ILIKE', '%' . $request->search . '%');
+        }
+
+        if ($request->category) {
+            $category = Category::where('slug', $request->category)->first();
+            if ($category) {
+                $query->where('category_id', $category->id);
+            }
+        }
+
+        if ($request->sort == 'az') {
+            $query->orderBy('title');
+        } elseif ($request->sort == 'za') {
+            $query->orderByDesc('title');
+        } elseif ($request->sort == 'latest') {
+            $query->orderByDesc('created_at');
+        } elseif ($request->sort == 'oldest') {
+            $query->orderBy('created_at');
+        }
+
         return view('dashboard.news.index', [
-            'news' => News::latest()->filter(request(['search', 'category', 'source']))->paginate(10)->withQueryString()
+            'news' => $query->paginate(10),
+            'categories' => Category::all()
         ]);
     }
 

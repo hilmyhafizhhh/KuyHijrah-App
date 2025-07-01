@@ -1,38 +1,37 @@
 @extends('dashboard.layouts.main')
 
-{{-- Tambahan style untuk modal agar selaras dengan tema --}}
+{{-- Tambahan style modal --}}
 <style>
-    .modal-header {
-        background-color: #f3f4f6;
-        border-bottom: 1px solid #e5e7eb;
-    }
-
-    .modal-title {
+    .modal-header { background-color: #f3f4f6; border-bottom: 1px solid #e5e7eb; }
+    .modal-title { color: #374151; font-weight: 600; }
+    .modal-body { color: #4b5563; }
+    .modal-footer .btn-danger { background-color: #dc3545; border-color: #dc3545; }
+    .modal-footer .btn-danger:hover { background-color: #bb2d3b; }
+    .modal-footer .btn-secondary { background-color: #e5e7eb; color: #374151; border: none; }
+    .modal-footer .btn-secondary:hover { background-color: #d1d5db; }
+    input.form-control,
+    select.form-select {
+        background-color: #f9fafb;
+        border: 1px solid #d1d5db;
         color: #374151;
-        font-weight: 600;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .modal-body {
-        color: #4b5563;
+    input.form-control:focus,
+    select.form-select:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+        background-color: #ffffff;
     }
 
-    .modal-footer .btn-danger {
-        background-color: #dc3545;
-        border-color: #dc3545;
+    .input-group .btn-outline-primary {
+        border-color: #0d6efd;
+        color: #0d6efd;
     }
 
-    .modal-footer .btn-danger:hover {
-        background-color: #bb2d3b;
-    }
-
-    .modal-footer .btn-secondary {
-        background-color: #e5e7eb;
-        color: #374151;
-        border: none;
-    }
-
-    .modal-footer .btn-secondary:hover {
-        background-color: #d1d5db;
+    .input-group .btn-outline-primary:hover {
+        background-color: #0d6efd;
+        color: #fff;
     }
 </style>
 
@@ -48,9 +47,51 @@
         </div>
     @endif
 
-    <div class="table-responsive col-lg-8">
-        <a href="/dashboard/news/create" class="btn btn-primary mb-3">Create new news</a>
+    <div class="table-responsive col-lg-10">
 
+        {{-- Tombol Create --}}
+        <div class="mb-3">
+            <a href="/dashboard/news/create" class="btn btn-primary">Create new news</a>
+        </div>
+
+        {{-- Filter dan Search --}}
+        <form method="GET" action="/dashboard/news" class="row g-3 align-items-center mb-3">
+            {{-- Search --}}
+            <div class="col-md-4">
+                <input type="text" name="search" class="form-control" placeholder="Search title..."
+                    value="{{ request('search') }}">
+            </div>
+
+            {{-- Filter Category --}}
+            <div class="col-md-3">
+                <select name="category" class="form-select" onchange="this.form.submit()">
+                    <option value="">All Categories</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->slug }}" {{ request('category') === $category->slug ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            {{-- Sort By --}}
+            <div class="col-md-3">
+                <select name="sort" class="form-select" onchange="this.form.submit()">
+                    <option value="">Sort by</option>
+                    <option value="az" {{ request('sort') === 'az' ? 'selected' : '' }}>A - Z</option>
+                    <option value="za" {{ request('sort') === 'za' ? 'selected' : '' }}>Z - A</option>
+                    <option value="latest" {{ request('sort') === 'latest' ? 'selected' : '' }}>Latest</option>
+                    <option value="oldest" {{ request('sort') === 'oldest' ? 'selected' : '' }}>Oldest</option>
+                </select>
+            </div>
+
+            {{-- Tombol optional --}}
+            <div class="col-md-2">
+                <button class="btn btn-primary w-100" type="submit">Filter</button>
+            </div>
+        </form>
+
+        {{-- Table --}}
         @if ($news->isNotEmpty())
             <table class="table table-striped table-sm align-middle">
                 <thead>
@@ -68,12 +109,8 @@
                             <td>{{ $article->title }}</td>
                             <td>{{ $article->category->name }}</td>
                             <td>
-                                <a href="/dashboard/news/{{ $article->slug }}" class="badge bg-info">
-                                    <span data-feather="eye"></span>
-                                </a>
-                                <a href="/dashboard/news/{{ $article->slug }}/edit" class="badge bg-warning">
-                                    <span data-feather="edit"></span>
-                                </a>
+                                <a href="/dashboard/news/{{ $article->slug }}" class="badge bg-info"><span data-feather="eye"></span></a>
+                                <a href="/dashboard/news/{{ $article->slug }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
                                 <button type="button"
                                     class="badge bg-danger border-0"
                                     data-bs-toggle="modal"
@@ -87,12 +124,12 @@
                 </tbody>
             </table>
         @else
-            <h2>No news available!</h2>
+            <div class="alert alert-secondary mt-3" role="alert">No news available.</div>
         @endif
 
         {{-- Pagination --}}
         <div class="d-flex justify-content-end mt-4">
-            {{ $news->links() }}
+            {{ $news->appends(request()->query())->links() }}
         </div>
     </div>
 
@@ -107,9 +144,7 @@
                         <h5 class="modal-title" id="confirmDeleteModalLabel">Delete News</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        This action cannot be undone. Are you sure you want to delete this news?
-                    </div>
+                    <div class="modal-body">This action cannot be undone. Are you sure you want to delete this news?</div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-danger">Delete</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -119,7 +154,7 @@
         </div>
     </div>
 
-    {{-- Script untuk mengatur form delete --}}
+    {{-- Script --}}
     <script>
         const deleteModal = document.getElementById('confirmDeleteModal');
         deleteModal.addEventListener('show.bs.modal', function (event) {
@@ -129,7 +164,6 @@
             form.setAttribute('action', action);
         });
 
-        // Inisialisasi feather icon setelah render
         document.addEventListener('DOMContentLoaded', function () {
             feather.replace();
         });

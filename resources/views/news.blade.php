@@ -108,7 +108,7 @@
 
                                 @if ($article->image)
                                     <img src="{{ asset('storage/' . $article->image) }}"
-                                        class="img-fluid rounded mb-4" alt="{{ $article->category->name }}">
+                                        class="img-fluid mb-4" alt="{{ $article->category->name }}">
                                 @else
                                     <img src="https://picsum.photos/500/400?{{ $article->category->name }}"
                                         class="card-img-top" alt="{{ $article->category->name }}">
