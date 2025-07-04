@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AlQuranController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardNewsController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JadwalSholatController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewsController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
@@ -37,3 +39,11 @@ Route::get('/dashboard/categories/checkSlug', [DashboardCategoryController::clas
 Route::resource('/dashboard/categories', DashboardCategoryController::class)->middleware('auth:admin');
 
 Route::get('/jadwal-sholat', [JadwalSholatController::class, 'index'])->name('jadwal');
+
+
+// Route::post('/chat', [ChatController::class, 'send'])->name('chat.send');
+// Route::post('/chat', [ChatController::class, 'send'])->withoutMiddleware(VerifyCsrfToken::class);
+
+Route::post('/chat', [ChatController::class, 'send'])
+    ->name('chat.send')
+    ->withoutMiddleware(VerifyCsrfToken::class);

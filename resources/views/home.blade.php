@@ -84,8 +84,8 @@
   </style>
 
   <section class="hero-section d-flex flex-column align-items-center justify-content-center text-center">
-    <img src="/images/ornament-islamic.svg" class="ornament" alt="Ornament">
-    <img src="/images/ornament-islamic.svg" class="ornament-top" alt="Ornament Top">
+    {{-- <img src="/images/ornament-islamic.svg" class="ornament" alt="Ornament">
+    <img src="/images/ornament-islamic.svg" class="ornament-top" alt="Ornament Top"> --}}
 
     <h1 class="fw-bold mb-3 hero-title" data-aos="fade-down" data-aos-duration="1000">
       Selamat Datang di <span class="hero-highlight">KuyHijrah</span>
