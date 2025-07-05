@@ -62,10 +62,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto text-center">
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Home</a>
+          <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Beranda</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="/about">About</a>
+          <a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="/about">Tentang</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {{ Request::is('quran') ? 'active' : '' }}" href="/quran">Al‑Qur’an</a>
@@ -74,10 +74,10 @@
           <a class="nav-link {{ Request::is('jadwal-sholat') ? 'active' : '' }}" href="/jadwal-sholat">Jadwal Sholat</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('news') ? 'active' : '' }}" href="/news">News</a>
+          <a class="nav-link {{ Request::is('news') ? 'active' : '' }}" href="/news">Artikel</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('categories') ? 'active' : '' }}" href="/categories">Category</a>
+          <a class="nav-link {{ Request::is('categories') ? 'active' : '' }}" href="/categories">Kategori</a>
         </li>
       </ul>
     </div>
