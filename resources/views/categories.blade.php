@@ -61,7 +61,7 @@
                             <div class="card shadow-sm">
                                 @if ($category->image)    
                                     <div class="position-relative">
-                                        <img src="{{ asset('storage/' . $category->image) }}" class="card-img"
+                                        <img src="{{ asset('storage/' . $category->image ) }}" class="card-img"
                                             alt="{{ $category->name }}">
                                         <div
                                             class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center card-title-overlay">
