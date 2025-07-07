@@ -16,6 +16,16 @@
     letter-spacing: -0.5px;
   }
 
+ .logo-navbar {
+    height: 150px; /* 3x dari default (sekitar 50px) */
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin-top: -48px;
+    margin-bottom: -48px;
+    margin-left: -48px;
+  }
+
   .navbar-nav .nav-link {
     font-weight: 500;
     font-size: 1.05rem; /* Tambahan ini */
@@ -48,11 +58,32 @@
   body {
     background-color: #f9fafb;
   }
+
+  @media (max-width: 576px) {
+    .logo-navbar {
+      height: 115px;
+      margin-top: -42px;
+      margin-bottom: -42px;
+      margin-left: -42px;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    .logo-navbar {
+      height: 120px;
+      margin-top: -40px;
+      margin-bottom: -40px;
+      margin-left: -40px;
+    }
+  }
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
   <div class="container px-3">
-    <a class="navbar-brand d-flex align-items-center" href="/">KuyHijrah<span class="text-success">.</span></a>
+    {{-- <a class="navbar-brand d-flex align-items-center" href="/">KuyHijrah<span class="text-success">.</span></a> --}}
+    <a class="navbar-brand" href="/">
+      <img src="{{ asset('images/logo-kuyhijrah.png') }}" alt="Logo KuyHijrah" class="logo-navbar">
+    </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

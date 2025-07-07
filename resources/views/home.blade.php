@@ -22,6 +22,13 @@
       color: #15803d;
     }
 
+    /* .hero-highlight {
+      color: #166534;
+      background: linear-gradient(to right, #16a34a, #4ade80);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    } */
+
     .hero-desc {
       font-family: 'Amiri', serif;
       font-size: 1.2rem;
