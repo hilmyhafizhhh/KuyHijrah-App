@@ -5,7 +5,8 @@
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap');
 
     .jadwal-sholat-section {
-        background: linear-gradient(to bottom right, #dcfce7, #f0fdf4);
+        /* background: linear-gradient(to bottom right, #dcfce7, #f0fdf4); */
+        background: linear-gradient(to bottom right, #e8f5e9, #f0fdf4);
         padding: 6rem 1.5rem 3rem;
         font-family: 'Tajawal', sans-serif;
     }
@@ -127,11 +128,11 @@
         </div>
 
         <div id="countdown" class="text-center"></div>
-
+{{-- 
         <div class="divider"></div>
         <div class="text-center">
             <a href="/" class="btn btn-outline-success rounded-pill">← Kembali ke Beranda</a>
-        </div>
+        </div> --}}
     </div>
 </section>
 
