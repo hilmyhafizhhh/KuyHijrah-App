@@ -5,7 +5,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap');
 
         .categories-section {
-            background: linear-gradient(to bottom, #f0fdf4, #d1fae5, #fefce8);
+            /* background: linear-gradient(to bottom, #f0fdf4, #d1fae5, #fefce8); */
+            background: linear-gradient(to bottom right, #e8f5e9, #f0fdf4);
             min-height: 96vh;
             padding: 7rem 1.25rem 1.5rem 1.25rem;
             font-family: 'Tajawal', sans-serif;

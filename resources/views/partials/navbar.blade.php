@@ -2,7 +2,9 @@
   @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&display=swap');
 
   .navbar-custom {
-    background: linear-gradient(to right, #d1fae5, #f0fdf4);
+    /* background: linear-gradient(to right, #d1fae5, #f0fdf4); */
+    background: linear-gradient(to right, rgba(209, 250, 229, 0.9), rgba(240, 253, 244, 0.9));
+    backdrop-filter: blur(10px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     padding: 1rem 0.5rem;
     font-family: 'Tajawal', sans-serif;
@@ -32,12 +34,14 @@
     color: #166534 !important;
     padding: 0.6rem 1rem;
     border-radius: 8px;
-    transition: all 0.25s ease;
+    /* transition: all 0.25s ease; */
+    transition: background-color 0.2s ease, transform 0.2s ease;
   }
 
   .navbar-nav .nav-link:hover {
     color: #15803d !important;
     background-color: rgba(22, 101, 52, 0.07);
+    transform: translateY(-2px);
   }
 
   .navbar-nav .nav-link.active {

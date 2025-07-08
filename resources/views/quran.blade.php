@@ -5,8 +5,8 @@
   @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&display=swap');
 
   .quran-section {
-    /* background: linear-gradient(to bottom, #ecfdf5, #ffffff); */
-    background: linear-gradient(to bottom right, #dcfce7, #f0fdf4);
+    /* background: linear-gradient(to bottom right, #dcfce7, #f0fdf4); */
+    background: linear-gradient(to bottom right, #e8f5e9, #f0fdf4);
     padding: 6rem 1.25rem;
     font-family: 'Tajawal', sans-serif;
   }

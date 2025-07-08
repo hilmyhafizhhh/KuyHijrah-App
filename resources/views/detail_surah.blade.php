@@ -3,7 +3,8 @@
 @section('container')
 <style>
   .detail-quran {
-    background: #f9faf8;
+    /* background: #f9faf8; */
+    background: linear-gradient(to bottom right, #e8f5e9, #f0fdf4);
     padding: 6rem 1.25rem;
     font-family: 'Tajawal', sans-serif;
   }

@@ -5,7 +5,8 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Tajawal:wght@500;700&display=swap');
 
     .about-section {
-      background: linear-gradient(to bottom, #fefce8, #ecfdf5);
+      /* background: linear-gradient(to bottom, #fefce8, #ecfdf5); */
+      background: linear-gradient(to bottom right, #e8f5e9, #f0fdf4);
       padding: 100px 20px;
       font-family: 'Inter', sans-serif;
       color: #166534;
@@ -20,7 +21,8 @@
     }
 
     .about-highlight {
-      color: #16a34a;
+      /* color: #16a34a; */
+      color: #15803d;
     }
 
     .about-subtitle {
