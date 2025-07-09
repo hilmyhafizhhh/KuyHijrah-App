@@ -86,7 +86,7 @@
   <div class="container px-3">
     {{-- <a class="navbar-brand d-flex align-items-center" href="/">KuyHijrah<span class="text-success">.</span></a> --}}
     <a class="navbar-brand" href="/">
-      <img src="{{ asset('images/logo-kuyhijrah.png') }}" alt="Logo KuyHijrah" class="logo-navbar">
+      <img src="{{ asset('storage/images/logo-kuyhijrah.png') }}" alt="Logo KuyHijrah" class="logo-navbar">
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
